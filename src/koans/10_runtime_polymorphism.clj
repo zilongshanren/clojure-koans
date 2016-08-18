@@ -14,6 +14,16 @@
 (defmethod diet :carnivore [a] (str (:name a) " eats animals."))
 (defmethod diet :default [a] (str "I don't know what " (:name a) " eats."))
 
+(defmulti add (fn [a b] [(type a) (type b)]))
+
+(defmethod add [Integer Integer] ([a b] (+ a b)))
+
+(add (int 1) (int 2))
+
+(defmethod add [String String] ([a b] (str a b)))
+
+(add "hello" " world")
+
 (meditations
   "Some functions can be used in different ways - with no arguments"
   (= "Hello World!" (hello))
